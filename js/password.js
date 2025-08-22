@@ -26,19 +26,12 @@ function isPasswordRequired() {
  * 在关键操作前都应该调用此函数
  */
 function ensurePasswordProtection() {
-    if (isPasswordRequired()) {
-        showPasswordModal();
-        throw new Error('Password protection is required');
-    }
-    if (isPasswordProtected() && !isPasswordVerified()) {
-        showPasswordModal();
-        throw new Error('Password verification required');
-    }
+
     return true;
 }
 
 window.isPasswordProtected = isPasswordProtected;
-window.isPasswordRequired = isPasswordRequired;
+window.isPasswordRequired = false;
 
 /**
  * 验证用户输入的密码是否正确（异步，使用SHA-256哈希）
